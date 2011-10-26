@@ -1,0 +1,42 @@
+!!!5
+html
+    head
+        title
+            | user@vokal-console
+        link(type="text/css", rel="stylesheet", href="/css/main.css")
+        script(src='/socket.io/socket.io.js')
+        script(src="/js/underscore.min.js")
+        script(src="/js/jquery.min.js")
+        script(src="/js/backbone.min.js")
+        script(src="/js/ICanHaz.min.js")
+        script(src="/js/console.js")
+
+        script#consoleInput(type="text/html")
+            div.console-input
+                span.hostname
+                    | {{ hostname }}:/>
+                input#input(type="text", maxlength="250", value="")
+
+        script#login(type="text/html")
+            div.console-input
+                span.hostname
+                    | Login:/>
+                input#username(type="text", maxlength="250", value="")
+
+        script#password(type="text/html")
+            div.console-input
+                span.hostname
+                    | Enter password:/>
+                input#password(type="password", maxlength="250", value="")
+
+        script#emptyResponse(type="text/html")
+            div.console-input
+                span.hostname
+                    | {{ hostname }}:/>
+
+        script#response(type="text/html")
+            div.response-text
+                {{{ response }}}
+            
+    body
+        div#main-content
