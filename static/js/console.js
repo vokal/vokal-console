@@ -12,6 +12,13 @@ socket.on('login-success', function(response) {
     $('input#input').first().focus();
 });
 
+socket.on('login-failure', function(response) {
+    $('#main-content').html('');
+    $('#main-content').append(ich.response(response));
+    $('#main-content').append(ich.login());
+    $('input#username').first().focus();
+});
+
 socket.on('response', function(response) {
     $('#main-content').append(ich.response(response));
 });

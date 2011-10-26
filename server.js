@@ -32,6 +32,10 @@ io.sockets.on('connection', function(socket) {
                         response: 'Welcome!  Logged in as: ' + data.username,
                     });
                 });
+            } else {
+                socket.emit('login-failure', {
+                    response: bbcodeParser.parse('[color="red"]Invalid username or password[/color]'),
+                });
             }
         });
     });
