@@ -21,6 +21,10 @@ socket.on('login-failure', function(response) {
 
 socket.on('response', function(response) {
     $('#main-content').append(ich.response(response));
+    $('input#input').first().show();
+    $('span.hostname').last().show();
+
+    $(document).scrollTop($(document).height());
 });
 
 $(document).ready(function() {
@@ -68,18 +72,21 @@ Console.prototype.submit_command = function() {
         var input = $('input#input').first();
         var command = input.val();
 
-        if (command === "") {
-            var hostname = $('span.hostname').last().html();
+        var hostname = $('span.hostname').last().html();
 
-            $('#main-content').append(ich.emptyResponse({
-                hostname: hostname,
-            }));
-        } else {
-            socket.emit('command', {
-                args: command,
-            });
-        }
+        $('#main-content').append(ich.sentCommand({
+            hostname: hostname,
+            command: command,
+        }));
+
+        socket.emit('command', {
+            args: command,
+        });
 
         input.val('');
+        input.hide();
+        $('span.hostname').last().hide();
     }
+
+    $(document).scrollTop($(document).height());
 };

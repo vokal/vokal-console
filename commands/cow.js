@@ -1,5 +1,5 @@
 module.exports = {
-    execute: function() {
-        return '[color="orange"]Moo[/color]';
+    execute: function(args, uid, callback) {
+        callback('[color="orange"]Moo[/color]');
     }
 };

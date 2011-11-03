@@ -1,0 +1,14 @@
+!!!5
+div
+    | #{title}
+div
+    | #{author.name}
+div
+    | ----------
+div
+    | !{body}
+div
+    | Comments:
+each comment in comments
+    div
+        | #{comment.author.name} said: !{comment.body}

@@ -86,3 +86,12 @@ span.yellow-text {
 span.green-text {
     color: #6699cc;
 }
+
+div.previous-command {
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+span.command {
+    margin-left: 8px;
+}

@@ -29,10 +29,12 @@ html
                     | Enter password:/>
                 input#password(type="password", maxlength="250", value="")
 
-        script#emptyResponse(type="text/html")
-            div.console-input
+        script#sentCommand(type="text/html")
+            div.previous-command
                 span.hostname
-                    | {{ hostname }}:/>
+                    | {{ hostname }}
+                span.command
+                    |  {{ command }}
 
         script#response(type="text/html")
             div.response-text

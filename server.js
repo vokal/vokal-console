@@ -41,18 +41,25 @@ io.sockets.on('connection', function(socket) {
     });
 
     socket.on('command', function(data) {
+        if (data.args == '') {
+            return;
+        }
+
         var argument_array = data.args.split(' ');
-        var response = '-bash: ' + argument_array[0] + ': command not found';
+
+        var callback = function(response) {
+            socket.emit('response', {
+                response: bbcodeParser.parse(response),
+            });
+        };
 
         if (command[argument_array[0]] !== undefined) {
             socket.get('uid', function(error, uid) {
-                response = command[argument_array[0]].execute(argument_array, uid);
+                command[argument_array[0]].execute(argument_array, uid, callback);
             });
+        } else {
+            callback('-bash: ' + argument_array[0] + ': command not found');
         }
-
-        socket.emit('response', {
-            response: bbcodeParser.parse(response),
-        });
     });
 });
 
@@ -62,3 +69,5 @@ app.get('/', function(request, response) {
 
 command.extend('cow', require('./commands/cow'));
 command.extend('wrong', {});
+command.extend('gh', require('./commands/github'));
+command.extend('bc', require('./commands/basecamp'));
